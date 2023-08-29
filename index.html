@@ -8,13 +8,21 @@
    </head>
    <body>
       <div id="container">
-         <div id="chatWindow"></div>
-         <div id="userInputForm">
-            <form>
-               <label for="userInput" id="inputFieldHeader">Chat here:</label> <br />
-               <textarea id="userInput" name="userInput" rows="4" cols="50"></textarea><br />
-               <input id="formSubmitButton" type="submit" value="submit" />
-            </form>
+         <div id="chatbotContainer">
+            <div id="chatWindow">
+               <div class="chatbotTextChat">
+                  <p class="chatbotChatReply">Hello there</p>
+               </div>
+               <div class="userTextChat">
+                     <p class="userChatReply">General Kenobi</p>
+               </div>
+            </div>
+            <div id="userInputForm">
+               <form>
+                  <textarea id="userInput" name="userInput" placeholder="Start chatting here..." rows="4" cols="50"></textarea><br />
+                  <input id="formSubmitButton" type="submit" value="Submit" />
+               </form>
+            </div>
          </div>
       </div>
    </body>
