@@ -8,14 +8,12 @@
    </head>
    <body>
       <div id="container">
-         <div id="chatWindow">
-            
-         </div>
+         <div id="chatWindow"></div>
          <div id="userInputForm">
-            <form action="/action_page.php">
-               <label for="userInput" id="inputFieldHeader"></label> <br />
-               <input type="text" id="userInput" name="userInput" /><br />
-               <input type="submit" value="submit">
+            <form>
+               <label for="userInput" id="inputFieldHeader">Chat here:</label> <br />
+               <textarea id="userInput" name="userInput" rows="4" cols="50"></textarea><br />
+               <input id="formSubmitButton" type="submit" value="submit" />
             </form>
          </div>
       </div>
