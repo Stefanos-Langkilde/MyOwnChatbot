@@ -26,17 +26,17 @@ body {
 #chatWindow {
    display: flex;
    flex-direction: column;
-   width: 100%;
+   width: 400px;
    height: 300px;
    background-color: ivory;
    margin: 0 0 5% 0;
    border-radius: 15px;
    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-   overflow: scroll;   
+   overflow: scroll;
 }
 
-#chatWindow::-webkit-scrollbar{
-    display: none;
+#chatWindow::-webkit-scrollbar {
+   display: none;
 }
 
 .chatbotTextChat {
@@ -49,12 +49,12 @@ body {
 }
 
 .chatbotChatReply {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    background-color: rgb(214, 155, 222);
-    padding: 3%;
-    border-radius: 15px 15px 15px 0;
-    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+   margin-top: 1%;
+   margin-bottom: 1%;
+   background-color: rgb(214, 155, 222);
+   padding: 3%;
+   border-radius: 15px 15px 15px 0;
+   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .userTextChat {
@@ -66,21 +66,24 @@ body {
 }
 
 .userChatReply {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    background-color: rgb(162, 172, 253);
-    padding: 3%;
-    border-radius: 15px 15px 0 15px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+   margin-top: 1%;
+   margin-bottom: 1%;
+   background-color: rgb(162, 172, 253);
+   padding: 3%;
+   border-radius: 15px 15px 0 15px;
+   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 #userInputForm {
    display: flex;
+   flex-direction: column;
+   width: 100%;
+   margin: auto;
 }
 
 #formElements {
-    display: flex;
-    flex-direction: row;
+   display: flex;
+   flex-direction: row;
 }
 
 #userInput {
@@ -93,33 +96,39 @@ body {
 }
 
 #formSubmitButton {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: auto;
-    border-radius: 40px;
-    border: solid 1px green;
-    background-color: green;
-    width: 4em;
-    height: 4em;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   margin: auto;
+   border-radius: 40px;
+   border: solid 1px green;
+   background-color: green;
+   width: 4em;
+   height: 4em;
+   box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
 }
 
 #formSubmitButton:hover {
-    background-color: rgb(12, 169, 12);
-    border: solid 1px rgb(12, 169, 12);
-    cursor: pointer;
+   background-color: rgb(12, 169, 12);
+   border: solid 1px rgb(12, 169, 12);
+   cursor: pointer;
 }
 
 .arrow {
-    border: solid whitesmoke;
-    border-width: 0 8px 8px 0;
-    display: inline-block;
-    padding: 6px;
-    border-radius: 2px;
-  }
-  
-  .right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
+   border: solid whitesmoke;
+   border-width: 0 8px 8px 0;
+   display: inline-block;
+   padding: 6px;
+   border-radius: 2px;
+}
+
+.right {
+   transform: rotate(-45deg);
+   -webkit-transform: rotate(-45deg);
+}
+
+.testCss {
+   background-color: aqua;
+   width: 200px;
+   height: 200px;
+}
