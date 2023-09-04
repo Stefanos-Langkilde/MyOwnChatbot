@@ -57,5 +57,18 @@
             </div>
          </div>
       </div>
+      <script>
+         //charcter count in console log
+         let textfield = document.getElementById("userInput");
+         
+         function updateCharCount() {
+            const currentText = textfield.value.length;
+            console.log(currentText);
+         }
+
+         textfield.addEventListener('input', updateCharCount);
+
+         updateCharCount();
+      </script>
    </body>
 </html>
