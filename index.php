@@ -5,9 +5,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="style.css" />
       <title>Chatbot</title>
+      <script>
+         //let startTime = new Date().getTime();
+         //while(new Date().getTime() < startTime + 2000){};
+      </script>
    </head>
    <?php
-   
+   //sleep(5);
    $botResponses = [
       "standart response" => "I didn't quite get that.",
       "what is your name?" => "My name is chatbot.",
@@ -69,6 +73,7 @@
          textfield.addEventListener('input', updateCharCount);
 
          updateCharCount();
+         
       </script>
    </body>
 </html>
