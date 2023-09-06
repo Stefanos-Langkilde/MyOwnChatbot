@@ -69,10 +69,10 @@
             <div id="userInputForm">
                <form action="?" method="get">
                   <div id="formElements">
-                     <textarea id="userInput" oninput="updateCharCount()" name="userInput" maxlength="50" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
+                     <textarea id="userInput" oninput="updateCharCount()" name="userInput" maxlength="60" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
                      <button id="formSubmitButton" type="submit"><i class="arrow right"></i></button>
                      <div class="box-container">
-                        <p id="charCount">0 / 200</p>
+                        <p id="charCount"></p>
                   </div>
                </form>
             </div>

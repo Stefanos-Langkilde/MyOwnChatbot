@@ -3,7 +3,7 @@
    --darkBlue: #140152;
    --lighterBlue: #22007c;
    --black: #02010a;
-   --darkred: #650000;
+   --lightBlue: #006466;
    --darkPink: #7a0066;
 }
 
@@ -75,7 +75,6 @@ form {
 .userTextChat {
    display: flex;
    flex-direction: row-reverse;
-   width: 8%;
    height: auto;
    margin: 3% 3% 3% 3%;
 }
@@ -143,7 +142,7 @@ form {
    display: flex;
    flex-direction: column;
    margin: auto;
-   color: var(--darkred);
+   color: var(--lightBlue);
 }
 
 .arrow {
