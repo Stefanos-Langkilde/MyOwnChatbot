@@ -8,6 +8,21 @@
       <script>
          //let startTime = new Date().getTime();
          //while(new Date().getTime() < startTime + 2000){};
+
+         
+         function updateCharCount() {
+            const textfield = document.getElementById("userInput");
+            const charCount = document.getElementById("charCount");
+            const currentText = textfield.value.length;
+            console.log(currentText);
+            let maxLength = textfield.getAttribute("maxlength");
+
+            charCount.textContent = `${currentText} / ${maxLength}`;
+         }
+         
+         textfield.addEventListener('input', updateCharCount);         
+
+         
       </script>
    </head>
    <?php
@@ -54,26 +69,17 @@
             <div id="userInputForm">
                <form action="?" method="get">
                   <div id="formElements">
-                     <textarea id="userInput" name="userInput" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
+                     <textarea id="userInput" oninput="updateCharCount()" name="userInput" maxlength="50" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
                      <button id="formSubmitButton" type="submit"><i class="arrow right"></i></button>
+                     <div class="box-container">
+                        <p id="charCount">0 / 200</p>
                   </div>
                </form>
             </div>
          </div>
       </div>
       <script>
-         //charcter count in console log
-         let textfield = document.getElementById("userInput");
-         
-         function updateCharCount() {
-            const currentText = textfield.value.length;
-            console.log(currentText);
-         }
-
-         textfield.addEventListener('input', updateCharCount);
-
          updateCharCount();
-         
       </script>
    </body>
 </html>
