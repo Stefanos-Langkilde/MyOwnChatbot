@@ -1,39 +1,33 @@
+<?php 
+   session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="style.css" />
-      <title>Chatbot</title>
+      <title>Chatbot</title>      
       <script>
          //let startTime = new Date().getTime();
          //while(new Date().getTime() < startTime + 2000){};
-
          
          function updateCharCount() {
             const textfield = document.getElementById("userInput");
             const charCount = document.getElementById("charCount");
             const currentText = textfield.value.length;
             console.log(currentText);
+
+            //set character count length
+            let setChar = textfield.setAttribute("maxlength", "90");
             let maxLength = textfield.getAttribute("maxlength");
 
             charCount.textContent = `${currentText} / ${maxLength}`;
          }
          
-         textfield.addEventListener('input', updateCharCount);         
-
-         
+         textfield.addEventListener('input', updateCharCount);
       </script>
    </head>
-   <?php
-   //sleep(5);
-   $botResponses = [
-      "standart response" => "I didn't quite get that.",
-      "what is your name?" => "My name is chatbot.",
-      "hello there" => "General Kenobi",
-   ]
-
-   ?>
 
    <body>
       <div id="container">
@@ -49,7 +43,9 @@
                   <p class="userChatReply">
                      <?php
                      if(isset($_GET["userInput"])){
-                        echo $_GET["userInput"];
+                        $_SESSION['userText'] = $_GET["userInput"];
+                        $sessionData = $_SESSION['userText'];
+                        echo $sessionData;
                      }else echo "...";
                      ?>
                    </p>
@@ -57,19 +53,19 @@
                   <div class="chatbotTextChat">
                      <p class="chatbotChatReply">
                         <?php
-                        if(isset($_GET["userInput"])){
-                           if(array_key_exists($_GET["userInput"], $botResponses)){
-                              echo $botResponses[$_GET["userInput"]];
-                           }else {echo $botResponses["standart response"];}
+                        if(isset($_GET["botResponse"])){
+                           $_SESSION['chatBotReply'] = $_GET["botResponse"];
+                           $sessionBot = $_SESSION['chatBotReply'];
+                           echo $sessionBot;
                         }else echo "...";
                         ?>
                      </p>
                   </div>
             </div>
             <div id="userInputForm">
-               <form action="?" method="get">
+               <form action="botResponses.php" method="get">
                   <div id="formElements">
-                     <textarea id="userInput" oninput="updateCharCount()" name="userInput" maxlength="60" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
+                     <textarea id="userInput" oninput="updateCharCount()" name="userInput" maxlength="100" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
                      <button id="formSubmitButton" type="submit"><i class="arrow right"></i></button>
                      <div class="box-container">
                         <p id="charCount"></p>
@@ -77,7 +73,6 @@
                </form>
             </div>
          </div>
-      </div>
       <script>
          updateCharCount();
       </script>
