@@ -40,26 +40,22 @@
                   <p class="userChatReply">General Kenobi</p>
                </div>
                <div class="userTextChat">
-                  <p class="userChatReply">
                      <?php
-                     if(isset($_GET["userInput"])){
-                        $_SESSION['userText'] = $_GET["userInput"];
-                        $sessionData = $_SESSION['userText'];
-                        echo $sessionData;
-                     }else echo "...";
+                        if(isset($_GET["userInput"])){
+                           $_SESSION['userText'] = $_GET["userInput"];
+                           $sessionData = $_SESSION['userText'];
+                           echo '<p class="userChatReply">' . $sessionData . '</p>';
+                        }else echo '<p class="userChatReply">...</p>';
                      ?>
-                   </p>
                   </div>
                   <div class="chatbotTextChat">
-                     <p class="chatbotChatReply">
-                        <?php
+                     <?php
                         if(isset($_GET["botResponse"])){
                            $_SESSION['chatBotReply'] = $_GET["botResponse"];
                            $sessionBot = $_SESSION['chatBotReply'];
-                           echo $sessionBot;
-                        }else echo "...";
-                        ?>
-                     </p>
+                           echo '<p class="chatbotChatReply">' . $sessionBot . '</p>';
+                        }else echo '<p class="chatbotChatReply">...</p>';
+                     ?>
                   </div>
             </div>
             <div id="userInputForm">
