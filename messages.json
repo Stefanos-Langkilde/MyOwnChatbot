@@ -1,8 +1,6 @@
 {   
-     
-"carBrands": {
-    "brand1": "Toyota",
-    "brand2": "Honda",
-    "brand3": "Ford"
-  }
+
+    "toyota": "Toyota is famous for its reliability.",
+    "honda": "Honda is a great car brand.",
+    "ford": "Ford is known for its durability."
 }

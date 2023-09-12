@@ -15,6 +15,7 @@ body {
    background-color: var(--darkestBlue);
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    font-size: 0.9em;
+   font-style: white;
 }
 
 form {
