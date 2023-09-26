@@ -1,6 +1,3 @@
-<?php
-   session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -9,10 +6,6 @@
       <link rel="stylesheet" href="style.css" />
       <title>Chatbot</title>      
       <script>
-         //let startTime = new Date().getTime();
-         //while(new Date().getTime() < startTime + 2000){};
-         
-         //textfield.addEventListener('input', updateCharCount);
          
          function updateCharCount() {
             const textfield = document.getElementById("userInput");
@@ -34,19 +27,12 @@
       <div id="container">
          <div id="chatbotContainer">
             <div id="chatWindow">
-            <?php
-               // PHP code to initialize session and retrieve chat history
-               if (isset($_SESSION['chat_history'])) {
-                  foreach ($_SESSION['chat_history'] as $message) {
-                     echo "<p>$message</p>";
-                  }
-               }
-            ?>
+               <!-- chat goes here -->
             </div>
             <div id="userInputForm">
-               <form id="chat-form" action="?" method="get">
+               <form id="chat-form">
                   <div id="formElements">
-                     <textarea id="userInput" oninput="updateCharCount()" name="userInput" maxlength="100" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
+                     <textarea id="userInput" oninput="updateCharCount()" name="user_input" maxlength="100" placeholder="Start chatting here..." rows="4" cols="50"></textarea>
                      <button id="formSubmitButton" type="submit"><i class="arrow right"></i></button>
                      <div class="box-container">
                         <p id="charCount"></p>
@@ -56,59 +42,75 @@
             </div>
          </div>
       </div>
-      <script>
-         fetch('messages.json')
-         .then(Response => Response.json())
-         .then(data => {
-            const chatOutput = document.getElementById('chatWindow');
-            const chatForm = document.getElementById('chat-form');
-            const userInput = document.getElementById('user-input');
+      <script>const chatContainer = document.getElementById('chatWindow');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('userInput');        
 
-            function appendBotResponse(response) {
-               chatOutput.innerHTML += `<p class="chatbotChatReply"><strong>Bot:</strong> ${response}</p><br/>`;
-            }
-
-            chatForm.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Prevent the form from submitting
-
-                    if(!userInput.value){
-                     const userMessage = "";
-                    }else {
-                       const userMessage = userInput.value.trim();
-                    }
-                    if (userMessage === '') return; // Ignore empty messages
-                    userInput.value = ''; // Clear the input field
-
-                    // Implement your chatbot logic here
-                    let botResponse = "";
-                    if (userMessage.toLowerCase() === 'name') {
-                        botResponse = `My name is ${data.honda}`;
-                    } else if (userMessage.toLowerCase() === 'age') {
-                        botResponse = `I am ${data.ford} years old`;
-                    } else if (userMessage.toLowerCase() === 'city') {
-                        botResponse = `I live in ${data.toyota}`;
-                    } else {
-                        botResponse = "I didn't understand that.";
-                    }
-
-                    // Append the user's message and bot's response to chat history
-                    chatOutput.innerHTML += `<p class="userChatReply"><strong>You:</strong> ${userMessage}</p><br/>`;
-                    appendBotResponse(botResponse);
-
-                    // PHP code to store chat history in session
-                    <?php
-                        if (!isset($_SESSION['chat_history'])) {
-                              $_SESSION['chat_history'] = array();
-                        }else {
-                           array_push($_SESSION['chat_history'], "<strong>You:</strong> $userMessage", "<strong>Bot:</strong> $botResponse");
-                        }
-                    ?>
-                });
+        function postData(url, data) {
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json', // Adjust the content type based on your needs
+                },
+                body: JSON.stringify(data), // Convert data to JSON format
+            })
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the response as JSON
             })
             .catch(error => {
-               console.error('Error:', error);
+                console.error('There was an error:', error);
             });
-            updateCharCount();
+        }
+
+        async function handleUserMessage(userMessage, botResponse) {
+            // Display user message in the chat
+            chatContainer.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+
+            // Display bot's response in the chat
+            chatContainer.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+            
+            // Scroll to the bottom of the chat
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userMessage = userInput.value.trim();
+            if (userMessage === '') return;
+            const jsonData = {user_input: userMessage};
+
+            const botResponse = await postData("phpBackend.php", jsonData);
+            await handleUserMessage(userMessage, botResponse['response']);
+            
+            // Clear the input field
+            userInput.value = '';
+        });
+
+        async function initializeChat() {
+            const response = await fetch('phpBackend.php');
+            if (response.ok) {
+               const data = await response.json();
+               const chatHistory = Object.values(data.chatHistory);
+
+               if (Array.isArray(chatHistory)) {
+                     for (const message of chatHistory) {
+                        await handleUserMessage(message.user, message.bot);
+                     }
+               } else {
+                     console.error('Chat history is not an array.');
+               }
+            } else {
+               console.error('Error fetching chat history.');
+            }
+         }
+
+         updateCharCount();
+         // Initialize the chat when the page loads
+         initializeChat();
       </script>
    </body>
 </html>

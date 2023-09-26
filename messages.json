@@ -1,6 +1,8 @@
-{   
-
-    "toyota": "Toyota is famous for its reliability.",
-    "honda": "Honda is a great car brand.",
-    "ford": "Ford is known for its durability."
+{
+   "responses": {
+      "Hi": "Hello! How can I assist you today?",
+      "How are you?": "I'm just a chatbot, but thanks for asking!",
+      "What's your name?": "I'm just a simple chatbot without a name.",
+      "Bye": "Goodbye! If you have more questions, feel free to come back anytime."
+   }
 }
