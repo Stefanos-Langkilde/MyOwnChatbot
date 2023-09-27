@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="styling/style.css" />
       <title>Chatbot</title>      
       <script>
          
@@ -37,14 +37,16 @@
                      <div class="box-container">
                         <p id="charCount"></p>
                      </div>
+                     <button onclick="resetSession()">Reset Session</button>
                   </div>
                </form>
             </div>
          </div>
       </div>
-      <script>const chatContainer = document.getElementById('chatWindow');
-        const chatForm = document.getElementById('chat-form');
-        const userInput = document.getElementById('userInput');        
+      <script>
+         const chatContainer = document.getElementById('chatWindow');
+         const chatForm = document.getElementById('chat-form');
+         const userInput = document.getElementById('userInput');       
 
         function postData(url, data) {
             return fetch(url, {
@@ -83,7 +85,7 @@
             if (userMessage === '') return;
             const jsonData = {user_input: userMessage};
 
-            const botResponse = await postData("phpBackend.php", jsonData);
+            const botResponse = await postData("api/phpBackend.php", jsonData);
             await handleUserMessage(userMessage, botResponse['response']);
             
             // Clear the input field
@@ -91,7 +93,7 @@
         });
 
         async function initializeChat() {
-            const response = await fetch('phpBackend.php');
+            const response = await fetch('api/phpBackend.php');
             if (response.ok) {
                const data = await response.json();
                const chatHistory = Object.values(data.chatHistory);
